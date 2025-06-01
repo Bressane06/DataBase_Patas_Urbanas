@@ -134,4 +134,6 @@ O projeto inclui scripts para:
 **Curso:** Sistemas de Informação  
 **Instituição:** UFMS/CPTL  
 **Ano/Semestre:** 2025/1  
-**Autor:** [Seu Nome ou Grupo] ✨
+**Autores:**
+- Breno Hideki Utimura
+- Gabriel Fiorentino Bressane

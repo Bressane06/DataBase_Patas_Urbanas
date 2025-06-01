@@ -176,3 +176,19 @@ INSERT INTO Gerencia (CPF_funcionario, codigoRecurso) VALUES
 ('88888888888', 8),
 ('99999999999', 10),
 ('10101010101', 11);
+
+-- Povoa tabela Vacina com 5 registros
+INSERT INTO Vacina (codigo, nome, tipo, viaAplicacao, lote, dataValidade) VALUES
+(1, 'V10', 'Polivalente', 'Injetavel (Subcutanea)', 'L123', '2026-01-01'),
+(2, 'Antirrábica', 'Raiva', 'Injetavel (Subcutanea)', 'L124', '2026-06-01'),
+(3, 'Giárdia', 'Giardíase', 'Oral', 'L125', '2026-10-01'),
+(4, 'V4', 'Polivalente Felina', 'Injetavel (Subcutanea)', 'L126', '2027-01-01'),
+(5, 'Leucemia Felina', 'Felv', 'Injetavel (Subcutanea)', 'L127', '2027-05-01');
+
+-- Povoa tabela EVacinado com 5 registros
+INSERT INTO EVacinado (codigoVacina, codigoAnimal, data) VALUES
+(1, 1, '2024-06-01'),
+(2, 3, '2024-06-01'),
+(3, 6, '2024-06-01'),
+(4, 2, '2024-06-01'),
+(5, 9, '2024-06-01');

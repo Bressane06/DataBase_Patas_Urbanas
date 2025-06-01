@@ -120,13 +120,13 @@ CREATE TABLE Dependente (
 
 -- Tabela ConsultaAnimal
 CREATE TABLE ConsultaAnimal (
-    codigoAnimal INTEGER NOT NULL REFERENCES Animal(codigo),
+    id INTEGER PRIMARY KEY,
+	codigoAnimal INTEGER NOT NULL REFERENCES Animal(codigo),
     CNPJclinica VARCHAR(14) NOT NULL REFERENCES ClinicaVeterinaria(CNPJ),
     CPF_responsavel VARCHAR(11) NOT NULL REFERENCES Voluntario(CPF),
     prescricao VARCHAR(90) NOT NULL,
     descricao VARCHAR(90) NOT NULL,
-    data DATE NOT NULL,
-    PRIMARY KEY (codigoAnimal, CNPJclinica, CPF_responsavel)
+    data DATE NOT NULL
 );
 
 -- Tabela AjudaAnimal

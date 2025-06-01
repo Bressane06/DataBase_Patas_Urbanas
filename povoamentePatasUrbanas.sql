@@ -111,12 +111,12 @@ INSERT INTO Objeto (codigo, nome, tipo, obs) VALUES
 (15, 'Bebedouro', 'Acessório', 'Bebedouro automático');
 
 -- 5 CONSULTA ANIMAL
-INSERT INTO ConsultaAnimal (codigoAnimal, CNPJclinica, CPF_responsavel, prescricao, descricao, data) VALUES
-(1, '12345678000101', '11111111111', 'Antibiótico por 7 dias', 'Infecção tratada', '2024-11-20'),
-(2, '23456789000102', '22222222222', 'Vacina V10', 'Vacinação anual', '2025-01-10'),
-(3, '34567890000103', '33333333333', 'Vermífugo', 'Prevenção vermes', '2025-03-15'),
-(4, '45678901000104', '44444444444', 'Analgésico', 'Dor nas patas', '2025-04-12'),
-(5, '56789012000105', '55555555555', 'Limpeza de tártaro', 'Consulta odontológica', '2025-05-25');
+INSERT INTO ConsultaAnimal (id, codigoAnimal, CNPJclinica, CPF_responsavel, prescricao, descricao, data) VALUES
+(1, 1, '12345678000101', '11111111111', 'Antibiótico por 7 dias', 'Infecção tratada', '2024-11-20'),
+(2, 2, '23456789000102', '22222222222', 'Vacina V10', 'Vacinação anual', '2025-01-10'),
+(3, 3, '34567890000103', '33333333333', 'Vermífugo', 'Prevenção vermes', '2025-03-15'),
+(4, 4, '45678901000104', '44444444444', 'Analgésico', 'Dor nas patas', '2025-04-12'),
+(5, 5, '56789012000105', '55555555555', 'Limpeza de tártaro', 'Consulta odontológica', '2025-05-25');
 
 -- 5 AJUDA ANIMAL
 INSERT INTO AjudaAnimal (CPFvoluntario, codigoAnimal) VALUES

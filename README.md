@@ -1,6 +1,3 @@
-#teste
-
-
 # Sistema de Gerenciamento de Abrigo de Animais 🏡
 
 Este projeto foi desenvolvido como parte da disciplina de **Banco de Dados** da **UFMS/CPTL**.  

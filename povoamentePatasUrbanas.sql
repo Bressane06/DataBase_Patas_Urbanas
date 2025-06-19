@@ -1,3 +1,8 @@
+-- Trabalho BD
+-- Breno Hideki Utimura
+-- Gabriel Fiorentino Bressane
+-- Data: 10/06/2025
+
 -- 10 ANIMAIS
 INSERT INTO Animal (codigo, nome, sexo, especie, raca, data, porte, estadoSaude, castrado) VALUES
 (1, 'Toby', 'M', 'Cão', 'Labrador', '2022-06-10', 'Grande', 'Saudável', 1),
@@ -11,18 +16,18 @@ INSERT INTO Animal (codigo, nome, sexo, especie, raca, data, porte, estadoSaude,
 (9, 'Sofia', 'F', 'Gato', 'Maine Coon', '2020-10-20', 'Grande', 'Saudável', 1),
 (10, 'Max', 'M', 'Cão', 'Beagle', '2021-09-25', 'Médio', 'Em tratamento', 1);
 
--- 10 PESSOAS (5 voluntários, 5 funcionários, CPFs distintos)
+-- 10 PESSOAS
 INSERT INTO Pessoa (CPF, primeiroNome, meioNome, ultimoNome, dataNasc, idade, sexo, numeroLocal, cep, logradouro) VALUES
 ('11111111111', 'Gabriel', 'Fiorentino', 'Bressane', '2006-05-03', 19, 'M', 1, '12345678', 'Rua dos Segredos'),
 ('22222222222', 'Breno', 'Hideki', 'Utimura', '2003-12-01', 21, 'M', 2, '23456789', 'Rua Dom Pedro I'),
-('33333333333', 'João', NULL, 'Santos', '1975-01-10', 50, 'M', 3, '34567890', 'Rua Verde'),
+('33333333333', 'João', '', 'Santos', '1975-01-10', 50, 'M', 3, '34567890', 'Rua Verde'),
 ('44444444444', 'Ana', 'Paula', 'Costa', '2000-12-30', 24, 'F', 4, '45678901', 'Alameda Azul'),
-('55555555555', 'Pedro', NULL, 'Souza', '1985-05-05', 40, 'M', 5, '56789012', 'Travessa Laranja'),
-('66666666666', 'Juliana', NULL, 'Mendes', '1992-11-11', 32, 'F', 6, '67890123', 'Rua dos Pássaros'),
+('55555555555', 'Pedro', '', 'Souza', '1985-05-05', 40, 'M', 5, '56789012', 'Travessa Laranja'),
+('66666666666', 'Juliana', '', 'Mendes', '1992-11-11', 32, 'F', 6, '67890123', 'Rua dos Pássaros'),
 ('77777777777', 'Lucas', 'Fernando', 'Pereira', '1988-09-22', 36, 'M', 7, '78901234', 'Av. das Palmeiras'),
-('88888888888', 'Beatriz', NULL, 'Ferreira', '1995-05-19', 29, 'F', 8, '89012345', 'Travessa das Acácias'),
+('88888888888', 'Beatriz', '', 'Ferreira', '1995-05-19', 29, 'F', 8, '89012345', 'Travessa das Acácias'),
 ('99999999999', 'Rafael', 'A.', 'Lima', '1983-03-03', 42, 'M', 9, '90123456', 'Rua das Hortências'),
-('10101010101', 'Paula', NULL, 'Almeida', '1998-08-08', 26, 'F', 10, '01234567', 'Av. dos Jacarandás');
+('10101010101', 'Paula', '', 'Almeida', '1998-08-08', 26, 'F', 10, '01234567', 'Av. dos Jacarandás');
 
 -- 5 CLINICAS
 INSERT INTO ClinicaVeterinaria (CNPJ, nome, especialidade, numeroLocal, cep, logradouro) VALUES
@@ -32,16 +37,15 @@ INSERT INTO ClinicaVeterinaria (CNPJ, nome, especialidade, numeroLocal, cep, log
 ('45678901000104', 'PetCare', 'Geral', 404, '45678901', 'Alameda Azul'),
 ('56789012000105', 'Clínica Bicho Feliz', 'Odontologia', 505, '56789012', 'Travessa Laranja');
 
--- 5 VOLUNTÁRIOS (CPFs exclusivos)
-INSERT INTO Voluntario (CPF, CPFsupervisor, especialidade, numeroLocal, cep, logradouro) VALUES
-('11111111111', NULL, 'Cuidador', 1, '12345678', 'Rua das Flores'),
-('22222222222', '11111111111', 'Veterinário', 2, '23456789', 'Av. Central'),
-('33333333333', '11111111111', 'Auxiliar', 3, '34567890', 'Rua Verde'),
-('44444444444', '22222222222', 'Adestrador', 4, '45678901', 'Alameda Azul'),
-('55555555555', '33333333333', 'Socialização', 5, '56789012', 'Travessa Laranja');
+-- 5 VOLUNTÁRIOS
+INSERT INTO Voluntario (CPF, CPFsupervisor, dataIngresso, areaAtuacao) VALUES
+('11111111111', NULL, '2022-01-10', 'Cuidador'),
+('22222222222', '11111111111', '2023-02-20', 'Veterinário'),
+('33333333333', '11111111111', '2023-03-25', 'Auxiliar'),
+('44444444444', '22222222222', '2024-01-05', 'Adestrador'),
+('55555555555', '33333333333', '2024-05-15', 'Socialização');
 
--- 5 FUNCIONÁRIOS (CPFs exclusivos, diferentes dos voluntários)
--- TIPOCONTRATO só aceita: 'CLT', 'PJ', 'meio periodo'
+-- 5 FUNCIONÁRIOS
 INSERT INTO Funcionario (CPF, dataContratacao, remuneracao, tipoContrato, cargo, horasSemana) VALUES
 ('66666666666', '2021-06-20', 3100.00, 'CLT', 'Atendente', 44),
 ('77777777777', '2019-08-15', 3400.00, 'PJ', 'Financeiro', 40),
@@ -49,7 +53,7 @@ INSERT INTO Funcionario (CPF, dataContratacao, remuneracao, tipoContrato, cargo,
 ('99999999999', '2022-02-13', 2800.00, 'CLT', 'Auxiliar Administrativo', 44),
 ('10101010101', '2023-03-01', 4100.00, 'CLT', 'Auxiliar Administrativo', 30);
 
--- 5 ADOTANTES (podem ser voluntários, funcionários ou apenas pessoas)
+-- 5 ADOTANTES
 INSERT INTO Adotante (CPF) VALUES
 ('11111111111'),   -- voluntário
 ('66666666666'),   -- funcionário
@@ -57,29 +61,34 @@ INSERT INTO Adotante (CPF) VALUES
 ('22222222222'),   -- voluntário
 ('33333333333');   -- voluntário
 
--- 5 DEPENDENTES (vinculados a funcionários)
-INSERT INTO Dependente (CPF, CPF_funcionario, idade, primeiroNome, meioNome, ultimoNome, sexo, numeroLocal, cep, logradouro) VALUES
-('12121212121', '66666666666', 16, 'Lucas', NULL, 'Silva', 'M', 10, '12345678', 'Rua das Flores'),
-('23232323232', '77777777777', 14, 'Julia', 'Maria', 'Oliveira', 'F', 20, '23456789', 'Av. Central'),
-('34343434343', '88888888888', 13, 'Rafaela', NULL, 'Santos', 'F', 30, '13572468', 'Rua do Sol'),
-('45454545454', '99999999999', 12, 'Vinicius', NULL, 'Costa', 'M', 40, '24681357', 'Rua da Lua'),
-('56565656565', '10101010101', 11, 'Beatriz', NULL, 'Souza', 'F', 50, '36925814', 'Rua das Pedras');
+-- 5 VETERINÁRIOS (São pessoas e também veterinários)
+INSERT INTO Veterinario (CPF, especialidade, CRMV) VALUES
+('22222222222', 'Clínico Geral', 'CRMV12345'),
+('33333333333', 'Cirurgião', 'CRMV54321'),
+('44444444444', 'Dermatologista', 'CRMV67890'),
+('55555555555', 'Odontologista', 'CRMV98765'),
+('11111111111', 'Clínico Geral', 'CRMV11223');
 
--- 15 RECURSOS (5 para cada subclasse)
+-- 5 VACINAS
+INSERT INTO Vacina (codigo, nome, tipo, viaAplicacao, lote, dataValidade) VALUES
+(1, 'V10', 'Polivalente', 'Injetavel (Subcutanea)', 'L123', '2026-01-01'),
+(2, 'Antirrábica', 'Raiva', 'Injetavel (Subcutanea)', 'L124', '2026-06-01'),
+(3, 'Giárdia', 'Giardíase', 'Oral', 'L125', '2026-10-01'),
+(4, 'V4', 'Polivalente Felina', 'Injetavel (Subcutanea)', 'L126', '2027-01-01'),
+(5, 'Leucemia Felina', 'Felv', 'Injetavel (Subcutanea)', 'L127', '2027-05-01');
+
+-- 15 RECURSOS
 INSERT INTO Recurso (codigo, descricao, origem, data) VALUES
--- Dinheiro
 (1, 'Doação Financeira', 'Doação', '2025-05-01'),
 (2, 'Recursos Próprios', 'Recurso Próprio', '2025-05-02'),
 (3, 'Arrecadação de Evento', 'Eventos', '2025-05-03'),
 (4, 'Campanha Online', 'Doação', '2025-05-04'),
 (5, 'Doação Anônima', 'Doação', '2025-05-05'),
--- Alimento
 (6, 'Ração para cães', 'Doação', '2025-05-10'),
 (7, 'Ração para gatos', 'Doação', '2025-05-11'),
 (8, 'Sache para gatos', 'Eventos', '2025-05-12'),
 (9, 'Biscoito para cães', 'Doação', '2025-05-13'),
 (10, 'Sache para gatos', 'Doação', '2025-05-14'),
--- Objeto
 (11, 'Coleira', 'Recurso Próprio', '2025-05-15'),
 (12, 'Brinquedo de corda', 'Doação', '2025-05-16'),
 (13, 'Caminha', 'Eventos', '2025-05-17'),
@@ -94,7 +103,7 @@ INSERT INTO Dinheiro (codigo, cifra, valor) VALUES
 (4, 'BRL', 750.50),
 (5, 'BRL', 200.00);
 
--- 5 ALIMENTO (códigos 6-10, todos únicos)
+-- 5 ALIMENTO (códigos 6-10)
 INSERT INTO Alimento (codigo, tipo, unidade, qtdd, dtValidade) VALUES
 (6, 'Ração Cachorro', 'kg', 10, '2025-09-10'),
 (7, 'Ração Gato', 'kg', 5, '2025-09-15'),
@@ -102,7 +111,7 @@ INSERT INTO Alimento (codigo, tipo, unidade, qtdd, dtValidade) VALUES
 (9, 'Biscoito Cachorro', 'kg', 7, '2025-10-10'),
 (10, 'Sache Gato', 'unidade', 3, '2025-10-15');
 
--- 5 OBJETO (códigos 11-15, todos únicos)
+-- 5 OBJETO (códigos 11-15)
 INSERT INTO Objeto (codigo, nome, tipo, obs) VALUES
 (11, 'Coleira', 'Acessório', 'Coleira vermelha, tamanho M'),
 (12, 'Brinquedo de corda', 'Brinquedo', 'Corda resistente'),
@@ -110,13 +119,21 @@ INSERT INTO Objeto (codigo, nome, tipo, obs) VALUES
 (14, 'Comedouro', 'Acessório', 'Comedouro de inox'),
 (15, 'Bebedouro', 'Acessório', 'Bebedouro automático');
 
--- 5 CONSULTA ANIMAL
-INSERT INTO ConsultaAnimal (id, codigoAnimal, CNPJclinica, CPF_responsavel, prescricao, descricao, data) VALUES
-(1, 1, '12345678000101', '11111111111', 'Antibiótico por 7 dias', 'Infecção tratada', '2024-11-20'),
-(2, 2, '23456789000102', '22222222222', 'Vacina V10', 'Vacinação anual', '2025-01-10'),
-(3, 3, '34567890000103', '33333333333', 'Vermífugo', 'Prevenção vermes', '2025-03-15'),
-(4, 4, '45678901000104', '44444444444', 'Analgésico', 'Dor nas patas', '2025-04-12'),
-(5, 5, '56789012000105', '55555555555', 'Limpeza de tártaro', 'Consulta odontológica', '2025-05-25');
+-- 5 CONSULTA ANIMAL (ajustado para incluir CPF_veterinario)
+INSERT INTO ConsultaAnimal (id, data, descricao, prescricao, codigoAnimal, CNPJclinica, CPF_responsavel, CPF_veterinario) VALUES
+(1, '2024-11-20', 'Infecção tratada', 'Antibiótico por 7 dias', 1, '12345678000101', '11111111111', '22222222222'),
+(2, '2025-01-10', 'Vacinação anual', 'Vacina V10', 2, '23456789000102', '22222222222', '33333333333'),
+(3, '2025-03-15', 'Prevenção vermes', 'Vermífugo', 3, '34567890000103', '33333333333', '44444444444'),
+(4, '2025-04-12', 'Dor nas patas', 'Analgésico', 4, '45678901000104', '44444444444', '55555555555'),
+(5, '2025-05-25', 'Consulta odontológica', 'Limpeza de tártaro', 5, '56789012000105', '55555555555', '11111111111');
+
+-- 5 VACINAÇÃO (substitui EVacinado e inclui dose)
+INSERT INTO Vacinacao (codigoVacina, codigoAnimal, data, dose) VALUES
+(1, 1, '2024-06-01', 1),
+(2, 3, '2024-06-01', 1),
+(3, 6, '2024-06-01', 1),
+(4, 2, '2024-06-01', 1),
+(5, 9, '2024-06-01', 1);
 
 -- 5 AJUDA ANIMAL
 INSERT INTO AjudaAnimal (CPFvoluntario, codigoAnimal) VALUES
@@ -126,7 +143,7 @@ INSERT INTO AjudaAnimal (CPFvoluntario, codigoAnimal) VALUES
 ('44444444444', 9),
 ('55555555555', 10);
 
--- 5 ADOCAO
+-- 5 ADOÇÃO
 INSERT INTO Adocao (CPF_adotante, codigoAnimal, data, obs) VALUES
 ('11111111111', 1, '2025-05-10', 'Adaptação em andamento'),
 ('66666666666', 2, '2025-05-11', 'Animal saudável'),
@@ -177,18 +194,10 @@ INSERT INTO Gerencia (CPF_funcionario, codigoRecurso) VALUES
 ('99999999999', 10),
 ('10101010101', 11);
 
--- Povoa tabela Vacina com 5 registros
-INSERT INTO Vacina (codigo, nome, tipo, viaAplicacao, lote, dataValidade) VALUES
-(1, 'V10', 'Polivalente', 'Injetavel (Subcutanea)', 'L123', '2026-01-01'),
-(2, 'Antirrábica', 'Raiva', 'Injetavel (Subcutanea)', 'L124', '2026-06-01'),
-(3, 'Giárdia', 'Giardíase', 'Oral', 'L125', '2026-10-01'),
-(4, 'V4', 'Polivalente Felina', 'Injetavel (Subcutanea)', 'L126', '2027-01-01'),
-(5, 'Leucemia Felina', 'Felv', 'Injetavel (Subcutanea)', 'L127', '2027-05-01');
-
--- Povoa tabela EVacinado com 5 registros
-INSERT INTO EVacinado (codigoVacina, codigoAnimal, data) VALUES
-(1, 1, '2024-06-01'),
-(2, 3, '2024-06-01'),
-(3, 6, '2024-06-01'),
-(4, 2, '2024-06-01'),
-(5, 9, '2024-06-01');
+-- 5 VETERINARIO TRABALHA (associa veterinários às clínicas)
+INSERT INTO VeterinarioTrabalha (CPF_veterinario, CNPJ_clinica, dataInicio, dataFim) VALUES
+('22222222222', '12345678000101', '2023-01-01', NULL),
+('33333333333', '23456789000102', '2023-02-01', NULL),
+('44444444444', '34567890000103', '2024-01-01', '2025-01-01'),
+('55555555555', '45678901000104', '2024-02-01', NULL),
+('11111111111', '56789012000105', '2025-01-01', NULL);

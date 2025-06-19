@@ -1,3 +1,8 @@
+-- Trabalho BD
+-- Breno Hideki Utimura
+-- Gabriel Fiorentino Bressane
+-- Data: 08/06/2025
+
 -- Tabela Animal
 CREATE TABLE Animal (
     codigo INTEGER PRIMARY KEY CHECK (codigo > 0),
@@ -9,6 +14,20 @@ CREATE TABLE Animal (
     porte VARCHAR(60) NOT NULL,
     estadoSaude VARCHAR(20) NOT NULL CHECK (estadoSaude IN ('Saudável', 'Em tratamento')),
     castrado INTEGER NOT NULL DEFAULT 0 CHECK (castrado IN (0, 1))
+);
+
+-- Tabela Pessoa
+CREATE TABLE Pessoa (
+    CPF VARCHAR(11) PRIMARY KEY,
+    primeiroNome VARCHAR(60) NOT NULL,
+    meioNome VARCHAR(60) DEFAULT '',
+    ultimoNome VARCHAR(60) NOT NULL,
+    dataNasc DATE NOT NULL,
+    idade INTEGER NOT NULL CHECK (idade >= 18 AND idade <= 150),
+    sexo CHAR(1) NOT NULL CHECK (sexo IN ('M', 'F')),
+    numeroLocal INTEGER NOT NULL,
+    cep CHAR(8) NOT NULL,
+    logradouro CHAR(50) NOT NULL
 );
 
 -- Tabela Vacina
@@ -31,18 +50,11 @@ CREATE TABLE ClinicaVeterinaria (
     logradouro CHAR(50) NOT NULL
 );
 
--- Tabela Pessoa
-CREATE TABLE Pessoa (
-    CPF VARCHAR(11) PRIMARY KEY,
-    primeiroNome VARCHAR(60) NOT NULL,
-	meioNome VARCHAR(60) DEFAULT '',
-    ultimoNome VARCHAR(60) NOT NULL,
-    dataNasc DATE NOT NULL,
-	idade INTEGER NOT NULL CHECK (idade >= 18 AND idade <= 150),
-    sexo CHAR(1) NOT NULL CHECK (sexo IN ('M', 'F')),
-    numeroLocal INTEGER NOT NULL,
-    cep CHAR(8) NOT NULL,
-    logradouro CHAR(50) NOT NULL
+-- Tabela Veterinario
+CREATE TABLE Veterinario (
+    CPF VARCHAR(11) PRIMARY KEY REFERENCES Pessoa(CPF),
+    especialidade VARCHAR(60) NOT NULL,
+    CRMV VARCHAR(20) NOT NULL
 );
 
 -- Tabela Recurso
@@ -65,7 +77,7 @@ CREATE TABLE Alimento (
     codigo INTEGER PRIMARY KEY REFERENCES Recurso(codigo),
     tipo VARCHAR(60) NOT NULL,
     unidade VARCHAR(60) NOT NULL,
-	qtdd INTEGER NOT NULL DEFAULT 0 CHECK (qtdd >= 0),
+    qtdd INTEGER NOT NULL DEFAULT 0 CHECK (qtdd >= 0),
     dtValidade DATE NOT NULL
 );
 
@@ -81,10 +93,8 @@ CREATE TABLE Objeto (
 CREATE TABLE Voluntario (
     CPF VARCHAR(11) PRIMARY KEY REFERENCES Pessoa(CPF),
     CPFsupervisor VARCHAR(11) REFERENCES Voluntario(CPF),
-    especialidade VARCHAR(60) NOT NULL,
-    numeroLocal INTEGER NOT NULL,
-    cep CHAR(8) NOT NULL,
-    logradouro CHAR(50) NOT NULL
+    dataIngresso DATE NOT NULL,
+    areaAtuacao VARCHAR(60) NOT NULL
 );
 
 -- Tabela Adotante
@@ -102,31 +112,25 @@ CREATE TABLE Funcionario (
     horasSemana INTEGER NOT NULL CHECK (horasSemana > 0)
 );
 
--- Tabela Dependente
-CREATE TABLE Dependente (
-    CPF VARCHAR(11) NOT NULL,
-    CPF_funcionario VARCHAR(11) NOT NULL,
-    idade INTEGER NOT NULL,
-    primeiroNome VARCHAR(60) NOT NULL,
-    meioNome VARCHAR(60) DEFAULT '',
-    ultimoNome VARCHAR(60) NOT NULL,
-    sexo CHAR(1) NOT NULL CHECK (sexo IN ('M', 'F')),
-    numeroLocal INTEGER NOT NULL,
-    cep CHAR(8) NOT NULL,
-    logradouro CHAR(50) NOT NULL,
-    PRIMARY KEY (CPF, CPF_funcionario),
-    FOREIGN KEY (CPF_funcionario) REFERENCES Funcionario(CPF)
-);
-
 -- Tabela ConsultaAnimal
 CREATE TABLE ConsultaAnimal (
     id INTEGER PRIMARY KEY,
-	codigoAnimal INTEGER NOT NULL REFERENCES Animal(codigo),
+    data DATE NOT NULL,
+    descricao VARCHAR(90) NOT NULL,
+    prescricao VARCHAR(90) NOT NULL,
+    codigoAnimal INTEGER NOT NULL REFERENCES Animal(codigo),
     CNPJclinica VARCHAR(14) NOT NULL REFERENCES ClinicaVeterinaria(CNPJ),
     CPF_responsavel VARCHAR(11) NOT NULL REFERENCES Voluntario(CPF),
-    prescricao VARCHAR(90) NOT NULL,
-    descricao VARCHAR(90) NOT NULL,
-    data DATE NOT NULL
+    CPF_veterinario VARCHAR(11) NOT NULL REFERENCES Veterinario(CPF)
+);
+
+-- Tabela Vacinacao (EVacinado + dose)
+CREATE TABLE Vacinacao (
+    codigoVacina INTEGER NOT NULL REFERENCES Vacina(codigo),
+    codigoAnimal INTEGER NOT NULL REFERENCES Animal(codigo),
+    data DATE NOT NULL,
+    dose INTEGER NOT NULL,
+    PRIMARY KEY (codigoVacina, codigoAnimal, data)
 );
 
 -- Tabela AjudaAnimal
@@ -142,7 +146,7 @@ CREATE TABLE Adocao (
     codigoAnimal INTEGER NOT NULL REFERENCES Animal(codigo),
     data DATE NOT NULL,
     obs VARCHAR(60),
-	PRIMARY KEY (CPF_adotante, codigoAnimal)
+    PRIMARY KEY (CPF_adotante, codigoAnimal)
 );
 
 -- Tabela TelefonePessoa
@@ -173,17 +177,18 @@ CREATE TABLE EmailClinica (
     PRIMARY KEY (CNPJ, email)
 );
 
--- Tabela EVacinado
-CREATE TABLE EVacinado (
-    codigoVacina INTEGER NOT NULL REFERENCES Vacina(codigo),
-    codigoAnimal INTEGER NOT NULL REFERENCES Animal(codigo),
-    data DATE NOT NULL,
-    PRIMARY KEY (codigoVacina, codigoAnimal)
-);
-
 -- Tabela Gerencia
 CREATE TABLE Gerencia (
     CPF_funcionario VARCHAR(11) NOT NULL REFERENCES Funcionario(CPF),
     codigoRecurso INTEGER NOT NULL REFERENCES Recurso(codigo),
     PRIMARY KEY (CPF_funcionario, codigoRecurso)
+);
+
+-- Tabela VeterinarioTrabalha
+CREATE TABLE VeterinarioTrabalha (
+    CPF_veterinario VARCHAR(11) NOT NULL REFERENCES Veterinario(CPF),
+    CNPJ_clinica VARCHAR(14) NOT NULL REFERENCES ClinicaVeterinaria(CNPJ),
+    dataInicio DATE NOT NULL,
+    dataFim DATE,
+    PRIMARY KEY (CPF_veterinario, CNPJ_clinica)
 );

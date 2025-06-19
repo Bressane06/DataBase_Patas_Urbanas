@@ -1,3 +1,8 @@
+-- Trabalho BD
+-- Breno Hideki Utimura
+-- Gabriel Fiorentino Bressane
+-- Data: 10/06/2025
+
 -- INSERÇÃO
 
 -- INSERIR UM NOVO ANIMAL

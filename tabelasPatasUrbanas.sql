@@ -128,6 +128,7 @@ CREATE TABLE ConsultaAnimal (
 CREATE TABLE Vacinacao (
     codigoVacina INTEGER NOT NULL REFERENCES Vacina(codigo),
     codigoAnimal INTEGER NOT NULL REFERENCES Animal(codigo),
+    CNPJ_clinica VARCHAR(14) NOT NULL REFERENCES ClinicaVeterinaria(CNPJ),
     data DATE NOT NULL,
     dose INTEGER NOT NULL,
     PRIMARY KEY (codigoVacina, codigoAnimal, data)

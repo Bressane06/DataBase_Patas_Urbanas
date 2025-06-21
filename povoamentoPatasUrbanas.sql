@@ -1,7 +1,7 @@
 -- Trabalho BD
 -- Breno Hideki Utimura
 -- Gabriel Fiorentino Bressane
--- Data: 10/06/2025
+-- Data: 20/06/2025
 
 -- 10 ANIMAIS
 INSERT INTO Animal (codigo, nome, sexo, especie, raca, data, porte, estadoSaude, castrado) VALUES
@@ -125,7 +125,9 @@ INSERT INTO ConsultaAnimal (id, data, descricao, prescricao, codigoAnimal, CNPJc
 (2, '2025-01-10', 'Vacinação anual', 'Vacina V10', 2, '23456789000102', '22222222222', '33333333333'),
 (3, '2025-03-15', 'Prevenção vermes', 'Vermífugo', 3, '34567890000103', '33333333333', '44444444444'),
 (4, '2025-04-12', 'Dor nas patas', 'Analgésico', 4, '45678901000104', '44444444444', '55555555555'),
-(5, '2025-05-25', 'Consulta odontológica', 'Limpeza de tártaro', 5, '56789012000105', '55555555555', '11111111111');
+(5, '2025-05-25', 'Consulta odontológica', 'Limpeza de tártaro', 5, '56789012000105', '55555555555', '11111111111'),
+(6, '2025-02-21', 'Prevenção vermes', 'Vermífugo', 5, '56789012000105', '55555555555', '11111111111');
+
 
 -- 5 VACINAÇÃO (substitui EVacinado e inclui dose)
 INSERT INTO Vacinacao (codigoVacina, codigoAnimal, cnpj_clinica, data, dose) VALUES

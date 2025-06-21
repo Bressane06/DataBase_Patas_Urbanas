@@ -11,20 +11,52 @@ O objetivo do projeto é proporcionar aos alunos uma experiência prática de **
 
 ---
 
-## 📐 Estrutura do Banco de Dados
+### 📄 Relatório Técnico
 
-O banco de dados é composto pelas seguintes tabelas principais:
+Para mais detalhes sobre o desenvolvimento, modelagem e implementação do sistema, consulte o [Relatório Técnico](relatorioTecnico).
+
+---
+
+### 🗺️ Diagramas
+
+Para acessar os diagramas do projeto (modelos ER, DER, etc.), consulte a pasta [Diagramas](diagramas).
+
+## 🗃️ Modelagem das Tabelas
+
+O banco de dados foi modelado com as seguintes entidades e relacionamentos principais, conforme os scripts SQL:
+
+---
+
+### 📂 Resumo dos Arquivos SQL
+
+O projeto é composto por quatro arquivos SQL principais, cada um com uma função específica no ciclo de vida do banco de dados:
+
+1. **[Tabelas](tabelasPatasUrbanas.sql)**  
+    Responsável pela criação de todas as tabelas do banco de dados, definindo as entidades, atributos, tipos de dados, chaves primárias e estrangeiras, além das restrições de integridade.
+
+2. **[Povoamento](povoamentoPatasUrbanas.sql)**  
+    Contém comandos `INSERT` para popular as tabelas com dados iniciais, simulando registros reais de animais, pessoas, clínicas, recursos, entre outros.
+
+3. **[ConsultasRelatorios](consultasRelatorios.sql)**  
+    Reúne exemplos de consultas SQL (`SELECT`) para extrair informações relevantes do banco, como listagens, buscas filtradas, relatórios e estatísticas.
+
+4. **[Inserir Atualizar Remover](InserirAtualizarRemover.sql)**  
+    Inclui comandos de atualização (`UPDATE`) e remoção (`DELETE`) de dados, demonstrando como modificar ou excluir registros conforme as necessidades do sistema.
+
+Esses arquivos permitem criar, alimentar, consultar e manter o banco de dados do sistema de gerenciamento do abrigo de animais.
+
+---
 
 ### 🐾 1. Animal
 - **codigo** (PK)
 - nome
-- sexo
+- sexo (`M` ou `F`)
 - especie
 - raca
 - data
 - porte
-- estadoSaude
-- castrado
+- estadoSaude (`Saudável` ou `Em tratamento`)
+- castrado (0 ou 1)
 
 ### 👤 2. Pessoa
 - **CPF** (PK)
@@ -32,32 +64,29 @@ O banco de dados é composto pelas seguintes tabelas principais:
 - meioNome
 - ultimoNome
 - dataNasc
-- idade
-- sexo
+- idade (18 a 150)
+- sexo (`M` ou `F`)
 - numeroLocal
 - cep
 - logradouro
 
 #### Subtipos de Pessoa:
-- **Voluntario** (CPF, CPFsupervisor, especialidade, ...)
+- **Voluntario** (CPF, CPFsupervisor, dataIngresso, areaAtuacao)
 - **Funcionario** (CPF, dataContratacao, remuneracao, tipoContrato, cargo, horasSemana)
 - **Adotante** (CPF)
+- **Veterinario** (CPF, especialidade, CRMV)
 
-### 👶 3. Dependente (tabela separada)
-- **CPF** (PK)
-- CPF_funcionario (FK para Funcionario)
-- idade
-- primeiroNome
-- meioNome
-- ultimoNome
-- sexo
-- numeroLocal
-- cep
-- logradouro
+### 💉 3. Vacina
+- **codigo** (PK)
+- nome (único)
+- tipo
+- viaAplicacao (`Oral`, `Injetavel (Subcutanea)`, `Injetavel (Intramuscular)`, `Intranasal`)
+- lote
+- dataValidade
 
 ### 🏥 4. ClinicaVeterinaria
 - **CNPJ** (PK)
-- nome
+- nome (único)
 - especialidade
 - numeroLocal
 - cep
@@ -66,7 +95,7 @@ O banco de dados é composto pelas seguintes tabelas principais:
 ### 💸 5. Recurso
 - **codigo** (PK)
 - descricao
-- origem
+- origem (`Doação`, `Recurso Próprio`, `Eventos`)
 - data
 
 #### Subtipos de Recurso:
@@ -75,52 +104,68 @@ O banco de dados é composto pelas seguintes tabelas principais:
 - **Objeto** (codigo, nome, tipo, obs)
 
 ### 🩺 6. ConsultaAnimal
-- codigoAnimal (FK para Animal)
-- CNPJclinica (FK para ClinicaVeterinaria)
-- CPF_responsavel (FK para Voluntario)
-- prescricao
-- descricao
+- **id** (PK)
 - data
+- descricao
+- prescricao
+- codigoAnimal (FK)
+- CNPJclinica (FK)
+- CPF_responsavel (FK para Voluntario)
+- CPF_veterinario (FK para Veterinario)
 
-### 🤝 7. AjudaAnimal
-- CPFvoluntario (FK para Voluntario)
-- codigoAnimal (FK para Animal)
+### 💉 7. Vacinacao
+- codigoVacina (FK)
+- codigoAnimal (FK)
+- CNPJ_clinica (FK)
+- data
+- dose
+- **PK composta:** (codigoVacina, codigoAnimal, CNPJ_clinica, data)
 
-### 🏠 8. Adocao
-- CPF_adotante (FK para Adotante)
-- codigoAnimal (FK para Animal)
+### 🤝 8. AjudaAnimal
+- CPFvoluntario (FK)
+- codigoAnimal (FK)
+- **PK composta:** (CPFvoluntario, codigoAnimal)
+
+### 🏠 9. Adocao
+- CPF_adotante (FK)
+- codigoAnimal (FK)
 - data
 - obs
+- **PK composta:** (CPF_adotante, codigoAnimal)
 
-### 📞 9. TelefonePessoa
-- CPF (FK para Pessoa)
+### 📞 10. TelefonePessoa
+- CPF (FK)
 - telefone
+- **PK composta:** (CPF, telefone)
 
-### 📞 10. TelefoneClinica
-- CNPJ (FK para ClinicaVeterinaria)
+### 📞 11. TelefoneClinica
+- CNPJ (FK)
 - telefone
+- **PK composta:** (CNPJ, telefone)
 
-### 📧 11. EmailPessoa
-- CPF (FK para Pessoa)
+### 📧 12. EmailPessoa
+- CPF (FK)
 - email
+- **PK composta:** (CPF, email)
 
-### 📧 12. EmailClinica
-- CNPJ (FK para ClinicaVeterinaria)
+### 📧 13. EmailClinica
+- CNPJ (FK)
 - email
+- **PK composta:** (CNPJ, email)
 
-### 🗂️ 13. Gerencia
-- CPF_funcionario (FK para Funcionario)
-- codigoRecurso (FK para Recurso)
+### 🗂️ 14. Gerencia
+- CPF_funcionario (FK)
+- codigoRecurso (FK)
+- **PK composta:** (CPF_funcionario, codigoRecurso)
 
----
+### 🏥 15. VeterinarioTrabalha
+- CPF_veterinario (FK)
+- CNPJ_clinica (FK)
+- dataInicio
+- dataFim
+- **PK composta:** (CPF_veterinario, CNPJ_clinica)
 
-## 🛠️ Scripts de Manipulação
-
-O projeto inclui scripts para:
-- ➕ Inserção de dados em todas as tabelas (com exemplos para cada entidade)
-- 🔄 Atualização e remoção de dados (para fins de prática e teste)
-
----
+--
 
 ## ℹ️ Observações
 

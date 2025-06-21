@@ -1,7 +1,7 @@
 -- Trabalho BD
 -- Breno Hideki Utimura
 -- Gabriel Fiorentino Bressane
--- Data: 08/06/2025
+-- Data: 20/06/2025
 
 -- Tabela Animal
 CREATE TABLE Animal (
@@ -131,7 +131,7 @@ CREATE TABLE Vacinacao (
     CNPJ_clinica VARCHAR(14) NOT NULL REFERENCES ClinicaVeterinaria(CNPJ),
     data DATE NOT NULL,
     dose INTEGER NOT NULL,
-    PRIMARY KEY (codigoVacina, codigoAnimal, data)
+    PRIMARY KEY (codigoVacina, codigoAnimal, CNPJ_clinica, data)
 );
 
 -- Tabela AjudaAnimal

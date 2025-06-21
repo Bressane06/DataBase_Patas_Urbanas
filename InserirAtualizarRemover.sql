@@ -52,9 +52,12 @@ WHERE CNPJ = '23456789000102';
 
 -- REMOÇÃO
 
--- Remover um telefone de uma pessoa
 DELETE FROM TelefonePessoa
-WHERE CPF = '11111111111' AND telefone = '11999999999';
+WHERE CPF IN (
+    SELECT CPF
+    FROM Pessoa
+    WHERE primeiroNome = 'Gabriel' AND ultimoNome = 'Bressane'
+)
 
 -- Remover um voluntário específico
 -- 1. Remover registros de AjudaAnimal relacionados ao voluntário

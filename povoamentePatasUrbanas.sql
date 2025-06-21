@@ -128,12 +128,12 @@ INSERT INTO ConsultaAnimal (id, data, descricao, prescricao, codigoAnimal, CNPJc
 (5, '2025-05-25', 'Consulta odontológica', 'Limpeza de tártaro', 5, '56789012000105', '55555555555', '11111111111');
 
 -- 5 VACINAÇÃO (substitui EVacinado e inclui dose)
-INSERT INTO Vacinacao (codigoVacina, codigoAnimal, data, dose) VALUES
-(1, 1, '2024-06-01', 1),
-(2, 3, '2024-06-01', 1),
-(3, 6, '2024-06-01', 1),
-(4, 2, '2024-06-01', 1),
-(5, 9, '2024-06-01', 1);
+INSERT INTO Vacinacao (codigoVacina, codigoAnimal, cnpj_clinica, data, dose) VALUES
+(1, 1, '12345678000101', '2024-06-01', 1),
+(2, 3, '56789012000105', '2024-06-01', 1),
+(3, 6, '12345678000101', '2024-06-01', 1),
+(4, 2, '56789012000105', '2024-06-01', 1),
+(5, 9, '56789012000105', '2024-06-01', 1);
 
 -- 5 AJUDA ANIMAL
 INSERT INTO AjudaAnimal (CPFvoluntario, codigoAnimal) VALUES
@@ -169,8 +169,8 @@ INSERT INTO TelefoneClinica (CNPJ, telefone) VALUES
 
 -- 5 EMAILPESSOA
 INSERT INTO EmailPessoa (CPF, email) VALUES
-('11111111111', 'carlos.silva@email.com'),
-('22222222222', 'maria.oliveira@email.com'),
+('11111111111', 'gabriel.bressane@email.com'),
+('22222222222', 'breno.utimura@email.com'),
 ('33333333333', 'joao.santos@email.com'),
 ('44444444444', 'ana.costa@email.com'),
 ('55555555555', 'pedro.souza@email.com');

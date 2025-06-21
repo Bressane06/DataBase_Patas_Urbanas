@@ -15,7 +15,7 @@ FROM pessoa AS P
 SELECT 
 	P.primeironome,
 	P.ultimonome,
-	AN.nome,
+	AN.nome AS nomeAnimal,
 	A.data
 FROM adocao AS A
 	JOIN adotante AS AD ON AD.cpf = A.cpf_adotante

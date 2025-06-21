@@ -183,7 +183,8 @@ Esses arquivos permitem criar, alimentar, consultar e manter o banco de dados do
 - Breno Hideki Utimura
 - Gabriel Fiorentino Bressane
 
-📄 Licença
+## 📄 Licença
+
 Este projeto está licenciado sob a Licença MIT.
 Isso significa que você pode usá-lo, modificá-lo, distribuí-lo e até usá-lo comercialmente, por sua conta e risco.
 
